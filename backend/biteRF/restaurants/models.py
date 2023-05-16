@@ -6,15 +6,12 @@
 # Here's an example of what this might look like:
 
 from django.db import models
-from django.conf import settings
+# from django.conf import settings
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=20)
-    rating = models.DecimalField(max_digits=3, decimal_places=2)
-    logo = models.URLField(default=settings.DEFAULT_IMAGE_URL)
-
+    logo = models.URLField()
 
 class Menu(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
@@ -24,7 +21,11 @@ class MenuItem(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.URLField(default=settings.DEFAULT_IMAGE_URL)
+    image = models.URLField()
+
+
+
+
 # Serializers:
 # kotlin
 # Copy code
