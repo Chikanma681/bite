@@ -2,11 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-
-# from djoser.views import UserViewSet
 from djoser.views import TokenCreateView
-
-# from .models import User
 from .serializers import UserRegistrationSerializers, UserSerializer
 
 class UserAPIView(APIView):

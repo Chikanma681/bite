@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404
 from .models import Restaurant, Menu, MenuItem
 from .serializers import RestaurantSerializer, MenuSerializer, MenuItemSerializer
 import boto3
-
 from io import BytesIO
 
 def upload_image_to_s3(file_content, bucket_name, key):
@@ -26,24 +25,6 @@ class RestaurantList(APIView):
         restaurants = Restaurant.objects.all()
         serializer = RestaurantSerializer(restaurants, many=True)
         return Response(serializer.data)
-
-    # def post(self, request):
-    #     serializer = RestaurantSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         logo_file = request.FILES.get('logo')
-    #         if logo_file:
-    #             # If an image file is provided, assign it to the 'logo' field of the serializer
-    #             key = 'restaurant/logos/logo.jpg'
-    #             bucket_name = 'bite-express-s3-bucket'
-
-    #             upload_image_to_s3(logo_file, bucket_name, key)
-    #             logo_url = get_s3_image_url(bucket_name, key)
-
-    #             request.data['logo'] = logo_url
-    #             serializer.validated_data['logo'] = logo_file
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request):
         serializer = RestaurantSerializer(data=request.data)
