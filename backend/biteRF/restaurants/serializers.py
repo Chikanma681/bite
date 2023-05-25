@@ -5,7 +5,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
     image = serializers.URLField(source='image.url', read_only=True)
     class Meta:
         model = MenuItem
-        fields = ('id', 'restaurant','name','price','image')
+        fields = ('id', 'menu','name','price','image')
 
 class MenuSerializer(serializers.ModelSerializer):
     item_set = MenuItemSerializer(many=True, read_only=True)

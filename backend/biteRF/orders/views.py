@@ -19,7 +19,7 @@ class OrderView(APIView):
 class PlaceOrderView(APIView):
     def post(self, request):
         menu_item_ids = request.data.get('menu_items')
-        quantity = request.data.get('quantity')
+        quantity = int(request.data.get('quantity'))
         special_instructions = request.data.get('special_instructions')
 
         # Retrieve the menu items and calculate the total price

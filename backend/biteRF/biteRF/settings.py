@@ -147,6 +147,11 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'media'  # The folder within the bucket to store media files
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 
 

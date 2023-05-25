@@ -9,3 +9,7 @@ urlpatterns = [
     path('auth/users/', UserRegistrationView.as_view(), name='user_registration'),
     path('auth/users/me/', UserAPIView.as_view(), name='user_profile'),
 ]
+# /auth/users/: Create a new user.
+# /auth/users/me/: Get current user info.
+# /auth/token/login/: Obtain a JSON Web Token (JWT) for authenticating a user.
+# /auth/token/logout/: Deauthenticate a user.

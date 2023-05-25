@@ -35,9 +35,3 @@ class UserLoginView(TokenCreateView):
             }
             response.data.update(data)
         return response
-
-
-# /auth/users/: Create a new user.
-# /auth/users/me/: Get current user info.
-# /auth/token/login/: Obtain a JSON Web Token (JWT) for authenticating a user.
-# /auth/token/logout/: Deauthenticate a user.

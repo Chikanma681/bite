@@ -1,6 +1,6 @@
 from django.db import models
-from user.model import User
-from restaurants.model import MenuItem
+from users.models import User
+from restaurants.models import MenuItem
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
