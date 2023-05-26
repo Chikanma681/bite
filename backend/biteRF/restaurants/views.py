@@ -110,13 +110,37 @@ class MenuItemList(APIView):
         serializer = MenuItemSerializer(menu_items, many=True)
         return Response(serializer.data)
 
+    # def post(self, request):
+    #     serializer = MenuItemSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         image_file = request.data.get('image')
+    #         if image_file:
+    #             serializer.validated_data['image'] = image_file
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def post(self, request):
         serializer = MenuItemSerializer(data=request.data)
         if serializer.is_valid():
+            # Get the uploaded image file
             image_file = request.data.get('image')
-            if image_file:
-                serializer.validated_data['image'] = image_file
-            serializer.save()
+
+            # Handle the image file and get the content
+            image_content = image_file.read()
+
+            # Generate a unique key for the image file
+            key = f'menu-items/images/{image_file.name}'
+
+            # Upload the image file to S3
+            upload_image_to_s3(image_content, settings.AWS_STORAGE_BUCKET_NAME, key)
+
+            # Get the S3 image URL
+            image_url = get_s3_image_url(settings.AWS_STORAGE_BUCKET_NAME, key)
+            print("IMAGE URL:", image_url)
+            # Save the restaurant with the image URL
+            serializer.save(image=image_url)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

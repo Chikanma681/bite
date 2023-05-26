@@ -2,8 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Order, MenuItem
 from .serializers import OrderSerializer
+from rest_framework.permissions import IsAuthenticated
 
 class OrderView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, order_id=None):
         if order_id:
             # Retrieve a specific order
@@ -17,6 +19,8 @@ class OrderView(APIView):
             return Response(serializer.data)
             
 class PlaceOrderView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         menu_item_ids = request.data.get('menu_items')
         quantity = int(request.data.get('quantity'))
