@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import environ
+from datetime import timedelta
 # from .storage_backends import MediaStorage
 
 # Initialise environment variables
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'drivers',
     'orders',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'djoser'
 ]
 
@@ -148,13 +151,16 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_LOCATION = 'media'  # The folder within the bucket to store media files
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework.authentication.TokenAuthentication',
-    ],
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
-
-
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15)# remember to change back to 5
+}
 
 
 # -> Sign  up for S3 and create a bucket
