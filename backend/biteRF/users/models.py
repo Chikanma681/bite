@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser #, Group, Permission
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
@@ -10,5 +10,5 @@ class User(AbstractUser):
     user_type = models.CharField(max_length=1, choices=USER_TYPE_CHOICES, default='C')
     # Set the username field to be optional
     # Add a unique related name to the groups and user_permissions fields
-    # groups = models.ManyToManyField(Group, related_name='user_groups', blank=True)
-    # user_permissions = models.ManyToManyField(Permission, related_name='user_permissions', blank=True)
+    groups = models.ManyToManyField(Group, related_name='user_groups', blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name='user_permissions', blank=True)

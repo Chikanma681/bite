@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'restaurants',
     'drivers',
     'orders',
+    # 'contenttypes',
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
@@ -136,7 +137,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'auth.User'
 
 
 # # settings.py
