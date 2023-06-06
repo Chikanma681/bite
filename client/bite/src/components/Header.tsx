@@ -1,43 +1,42 @@
 import React from "react";
-import { Nav, Navbar, NavbarBrand, NavItem, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import logo from "../assets/logo.jpg";
+import { Navbar, NavbarBrand, Form, Input } from "reactstrap";
+import logo from "../assets/logo.png";
 
 const Header: React.FC = () => {
-  const containerStyle: React.CSSProperties = {
-    position: "relative",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100px",
-  };
-
   const logoStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "10px",
-    left: "25px",
-    width: "150px", // Adjust the width as needed
-    height: "auto",
-    zIndex: 1, // Ensure the logo stays on top
+    height: "42px",
   };
 
   const formStyle: React.CSSProperties = {
-    backgroundColor: "white",
-    padding: "8px",
     borderRadius: "9999px",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Add a subtle shadow effect
-    zIndex: 0, // Place the form behind the logo
+    justifyContent: "center",
+    paddingLeft: "20px",
+    alignItems: "center",
+    width: "300px",
+    backgroundColor: "#E5E7EB", // Set the form's background color to grey
+  };
+
+  const navbarStyle: React.CSSProperties = {
+    borderBottom: "1px solid #D1D5DB", // Add a bottom border to the navbar
   };
 
   return (
-    <Navbar>
-      <div style={containerStyle}>
-        <img src={logo} alt="Logo" style={logoStyle} />
-        <Form style={formStyle}>
-          <FormGroup>
-            <Input name="restaurants" placeholder="Search meals, restaurants" />
-          </FormGroup>
-        </Form>
-      </div>
+    <Navbar light expand="md" className="flex justify-between items-center py-2" style={navbarStyle}>
+      <NavbarBrand href="/" className="text-gray-800 text-lg font-bold"><img src={logo} alt="Logo" style={logoStyle} /></NavbarBrand>
+      <Form inline className="flex items-center">
+        <input
+          name="restaurants"
+          style={formStyle}
+          placeholder="Search foods, restaurants"
+          className="border-gray-400 focus:border-gray-600 focus:border-black rounded-full px-4 py-2 text-sm w-full"
+        />
+      </Form>
+      <button
+        type="button"
+        className="rounded-full bg-red-500 border-red-500 text-white font-bold text-base px-4 py-2"
+      >
+        Sign In
+      </button>
     </Navbar>
   );
 };

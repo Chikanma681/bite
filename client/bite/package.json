@@ -6,15 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tailwind:build": "NODE_ENV=production npx tailwindcss build -o src/index.css"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.3.0",
+    "postcss": "^8.4.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactstrap": "^9.1.10",
     "typeface-nunito": "^1.1.13"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^5.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
